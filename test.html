@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple Slides with Fade Transition</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            background: #d8d8d8;
+            color: rgba(0, 0, 0, 0.54);
+            font-size: 14px;
+            line-height: 23px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-block {
+            background: #999;
+            width: 750px;
+            margin: 0 auto;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        @keyframes xfade {
+            25%, 75% {
+                opacity: 1;
+            }
+            40%, 90% {
+                opacity: 0;
+            }
+        }
+
+        .image-holder {
+            height: 300px;
+            position: relative;
+        }
+
+        .image-holder .image-content-slide {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 750px;
+            transform: translate(-50%, -50%);
+            animation: xfade 18s infinite;
+            opacity: 0;
+        }
+
+        .image-holder i {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-left: 40%;
+            margin-top: auto;
+            padding-right: 12px;
+            left: 0;
+            bottom: -30px;
+            z-index: 1000;
+            background: #f48b00;
+            animation: fade 18s infinite;
+            visibility: hidden;
+        }
+
+        .thumbnail-highlted {
+            animation-delay: 0s, 4s, 8s, 12s, 16s;
+        }
+
+        .image-content-slide:nth-child(1) {
+            animation-delay: 12s;
+        }
+
+        .image-content-slide:nth-child(2) {
+            animation-delay: 8s;
+        }
+
+        .image-content-slide:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        .image-content-slide:nth-child(4) {
+            animation-delay: 0s;
+        }
+
+        .image-content-slide:nth-child(5) {
+            animation-delay: 16s;
+        }
+
+        .image-holder {
+            position: relative;
+            text-align: left;
+            font-size: 0;
+            height: 500px;
+        }
+
+        .thumbnail-tab {
+            position: fixed;
+            left: -9999px;
+        }
+
+        .thumbnails-block {
+            background: #3a0303;
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px 0px;
+            overflow: hidden;
+            position: relative;
+            height: 38px;
+        }
+
+        .slide-thumbnail {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 5px 0px #bdbdbd inset;
+            position: absolute;
+            margin-left: 40%;
+            margin-top: auto;
+            padding-right: 12px;
+            left: 0;
+            top: 10px;
+        }
+
+        #slide-two-header {
+            margin-left: 47.5%;
+        }
+
+        #slide-three-header {
+            margin-left: 55%;
+        }
+
+        #slide-four-header {
+            margin-left: 62.5%;
+        }
+
+        #slide-five-header {
+            margin-left: 70%;
+        }
+
+        .thumbnail-tab:checked ~ .image-holder .image-content-slide {
+            width: 100%;
+            display: none;
+            animation: none;
+            opacity: 1;
+        }
+
+        .thumbnail-tab:checked ~ .image-holder .thumbnail-highlted {
+            display: none;
+        }
+
+        #slide-one:checked ~ .image-holder #slide-one-image,
+        #slide-two:checked ~ .image-holder #slide-two-image,
+        #slide-three:checked ~ .image-holder #slide-three-image,
+        #slide-four:checked ~ .image-holder #slide-four-image,
+        #slide-five:checked ~ .image-holder #slide-five-image {
+            display: block;
+        }
+
+        #slide-one:checked ~ .thumbnails-block #slide-one-header,
+        #slide-two:checked ~ .thumbnails-block #slide-two-header,
+        #slide-three:checked ~ .thumbnails-block #slide-three-header,
+        #slide-four:checked ~ .thumbnails-block #slide-four-header,
+        #slide-five:checked ~ .thumbnails-block #slide-five-header {
+            background: #f48b00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-block">
+    <div id="images-slider">
+        <input class="thumbnail-tab" type="radio" name="tabs-state" id="slide-one">
+        <input class="thumbnail-tab" type="radio" name="tabs-state" id="slide-two">
+        <input class="thumbnail-tab" type="radio" name="tabs-state" id="slide-three">
+        <input class="thumbnail-tab" type="radio" name="tabs-state" id="slide-four">
+        <input class="thumbnail-tab" type="radio" name="tabs-state" id="slide-five">
+
+        <div class="image-holder">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-221/img-1.jpg" alt class="image-content-slide" id="slide-one-image">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-221/img-2.jpg" alt class="image-content-slide" id="slide-two-image">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-221/img-3.jpg" alt class="image-content-slide" id="slide-three-image">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-221/img-4.jpg" alt class="image-content-slide" id="slide-four-image">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-221/img-5.jpg" alt class="image-content-slide" id="slide-five-image">
+            <i class="thumbnail-highlted-one thumbnail-highlted">&nbsp;</i>
+            <i class="thumbnail-highlted-two thumbnail-highlted">&nbsp;</i>
+            <i class="thumbnail-highlted-three thumbnail-highlted">&nbsp;</i>
+            <i class="thumbnail-highlted-four thumbnail-highlted">&nbsp;</i>
+            <i class="thumbnail-highlted-five thumbnail-highlted">&nbsp;</i>
+        </div>
+        <div class="thumbnails-block">
+            <label for="slide-one" class="slide-thumbnail" id="slide-one-header">&nbsp;</label>
+            <label for="slide-two" class="slide-thumbnail" id="slide-two-header">&nbsp;</label>
+            <label for="slide-three" class="slide-thumbnail" id="slide-three-header">&nbsp;</label>
+            <label for="slide-four" class="slide-thumbnail" id="slide-four-header">&nbsp;</label>
+            <label for="slide-five" class="slide-thumbnail" id="slide-five-header">&nbsp;</label>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
